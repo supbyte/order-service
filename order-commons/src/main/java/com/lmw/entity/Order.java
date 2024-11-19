@@ -1,5 +1,6 @@
 package com.lmw.entity;
 
+import com.lmw.enums.OrderStatus;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -11,7 +12,7 @@ public class Order {
     private Integer orderId;
     private Integer userId;
     private BigDecimal totalPrice;
-    private String status;
+    private OrderStatus status;
     private Timestamp createdAt;
     private List<OrderItem> orderItems;
 }
