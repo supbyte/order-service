@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lmw.mapper.OrderMapper">
+
+    <resultMap id="OrderResultMap" type="com.lmw.entity.Order">
+        <id property="orderId" column="order_id"/>
+        <result property="userId" column="user_id"/>
+        <result property="totalPrice" column="total_price"/>
+        <result property="status" column="status"/>
+        <result property="createdAt" column="created_at"/>
+    </resultMap>
+
+    <select id="getOrderById" resultMap="OrderResultMap">
+        SELECT * FROM orders WHERE order_id = #{orderId}
+    </select>
+
+    <insert id="createOrder" useGeneratedKeys="true" keyProperty="orderId">
+        INSERT INTO orders (user_id, total_price, status, created_at) VALUES (#{userId}, #{totalPrice}, #{status}, NOW())
+    </insert>
+
+    <update id="updateOrderStatus">
+        UPDATE orders SET status = #{status} WHERE order_id = #{orderId}
+    </update>
+
+    <select id="getOrdersByUserId" resultMap="OrderResultMap">
+        SELECT * FROM orders WHERE user_id = #{userId}
+    </select>
+</mapper>

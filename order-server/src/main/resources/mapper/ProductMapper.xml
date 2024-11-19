@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lmw.mapper.ProductMapper">
+
+    <resultMap id="ProductResultMap" type="com.lmw.entity.Product">
+        <id property="productId" column="product_id"/>
+        <result property="name" column="name"/>
+        <result property="price" column="price"/>
+        <result property="stock" column="stock"/>
+        <result property="createdAt" column="created_at"/>
+    </resultMap>
+
+    <select id="getProductById" resultMap="ProductResultMap">
+        SELECT * FROM products WHERE product_id = #{productId}
+    </select>
+
+    <insert id="createProduct" useGeneratedKeys="true" keyProperty="productId">
+        INSERT INTO products (name, price, stock, created_at)
+        VALUES (#{name}, #{price}, #{stock}, NOW())
+    </insert>
+
+    <update id="updateProductStock">
+        UPDATE products SET stock = #{stock} WHERE product_id = #{productId}
+    </update>
+
+    <select id="getAllProducts" resultMap="ProductResultMap">
+        SELECT * FROM products
+    </select>
+</mapper>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lmw.mapper.PaymentMapper">
+
+    <resultMap id="PaymentResultMap" type="com.lmw.entity.Payment">
+        <id property="paymentId" column="payment_id"/>
+        <result property="orderId" column="order_id"/>
+        <result property="amount" column="amount"/>
+        <result property="status" column="status"/>
+        <result property="paymentMethod" column="payment_method"/>
+        <result property="createdAt" column="created_at"/>
+    </resultMap>
+
+    <select id="getPaymentById" resultMap="PaymentResultMap">
+        SELECT * FROM payments WHERE payment_id = #{paymentId}
+    </select>
+
+    <insert id="createPayment" useGeneratedKeys="true" keyProperty="paymentId">
+        INSERT INTO payments (order_id, amount, status, payment_method, created_at)
+        VALUES (#{orderId}, #{amount}, #{status}, #{paymentMethod}, NOW())
+    </insert>
+
+    <select id="getPaymentsByOrderId" resultMap="PaymentResultMap">
+        SELECT * FROM payments WHERE order_id = #{orderId}
+    </select>
+</mapper>
