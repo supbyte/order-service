@@ -12,6 +12,8 @@ import com.lmw.exception.ResourceNotFoundException;
 import com.lmw.result.Result;
 import com.lmw.service.OrderService;
 import com.lmw.vo.OrderVO;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 @Slf4j
+@Api(tags = "订单服务接口")
 @RestController
 @RequestMapping("/orders")
 public class OrderController {
@@ -28,6 +31,7 @@ public class OrderController {
     @Resource
     private OrderService orderService;
 
+    @ApiOperation("创建订单")
     @PostMapping("/create")
     public Result<Map<String, Object>> createOrder(@RequestParam int userId, @RequestBody List<OrderItemDTO> items) {
         try {
@@ -42,6 +46,7 @@ public class OrderController {
         }
     }
 
+    @ApiOperation("支付订单")
     @PutMapping("/{orderId}/pay")
     public Result<Map<String, Object>> payOrder(@PathVariable int orderId, @RequestBody PaymentDTO paymentDTO) {
         Map<String, Object> map = new HashMap<>();
@@ -57,6 +62,7 @@ public class OrderController {
         }
     }
 
+    @ApiOperation("取消订单")
     @PutMapping("/{orderId}/cancel")
     public Result<Map<String, Object>> cancelOrder(@PathVariable int orderId, @RequestParam Integer userId) {
         Map<String, Object> map = new HashMap<>();
@@ -70,6 +76,7 @@ public class OrderController {
         }
     }
 
+    @ApiOperation("查询订单")
     @GetMapping("/{orderId}")
     public Result<OrderVO> getOrderById(@PathVariable int orderId) {
         try {

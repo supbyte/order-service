@@ -24,11 +24,11 @@
         <java.version>8</java.version>
         <mybatis.spring>2.2.0</mybatis.spring>
         <lombok>1.18.20</lombok>
-        <fastjson>1.2.76</fastjson>
+        <fastjson>2.0.53</fastjson>
         <commons.lang>2.6</commons.lang>
         <druid>1.2.1</druid>
         <pagehelper>1.4.1</pagehelper>
-        <knife4j>3.0.2</knife4j>
+        <knife4j>3.0.3</knife4j>
         <aspectj>1.9.4</aspectj>
         <redisson>3.18.0</redisson>
     </properties>
@@ -47,10 +47,11 @@
             </dependency>
 
             <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>fastjson</artifactId>
+                <groupId>com.alibaba.fastjson2</groupId>
+                <artifactId>fastjson2</artifactId>
                 <version>${fastjson}</version>
             </dependency>
+
 
             <dependency>
                 <groupId>commons-lang</groupId>
