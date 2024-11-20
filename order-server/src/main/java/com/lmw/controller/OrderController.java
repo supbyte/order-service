@@ -15,6 +15,7 @@ import com.lmw.vo.OrderVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -33,6 +34,7 @@ public class OrderController {
 
     @ApiOperation("创建订单")
     @PostMapping("/create")
+    @CacheEvict(cacheNames = "userOrderCache", key = "#userId")
     public Result<Map<String, Object>> createOrder(@RequestParam int userId, @RequestBody List<OrderItemDTO> items) {
         try {
             Order order = orderService.createOrder(userId, items);
@@ -48,6 +50,7 @@ public class OrderController {
 
     @ApiOperation("支付订单")
     @PutMapping("/{orderId}/pay")
+    @CacheEvict(cacheNames = "userOrderCache", key = "#paymentDTO.userId")
     public Result<Map<String, Object>> payOrder(@PathVariable int orderId, @RequestBody PaymentDTO paymentDTO) {
         Map<String, Object> map = new HashMap<>();
         map.put("orderId", orderId);
@@ -64,6 +67,7 @@ public class OrderController {
 
     @ApiOperation("取消订单")
     @PutMapping("/{orderId}/cancel")
+    @CacheEvict(cacheNames = "userOrderCache", key = "#userId")
     public Result<Map<String, Object>> cancelOrder(@PathVariable int orderId, @RequestParam Integer userId) {
         Map<String, Object> map = new HashMap<>();
         map.put("orderId", orderId);
