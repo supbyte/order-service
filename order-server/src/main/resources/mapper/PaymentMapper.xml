@@ -20,7 +20,7 @@
         VALUES (#{orderId}, #{amount}, #{status}, #{paymentMethod}, NOW())
     </insert>
 
-    <select id="getPaymentsByOrderId" resultMap="PaymentResultMap">
+    <select id="getPaymentByOrderId" resultMap="PaymentResultMap">
         SELECT * FROM payments WHERE order_id = #{orderId}
     </select>
 </mapper>

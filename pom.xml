@@ -30,7 +30,7 @@
         <pagehelper>1.4.1</pagehelper>
         <knife4j>3.0.2</knife4j>
         <aspectj>1.9.4</aspectj>
-        <redisson>3.25.2</redisson>
+        <redisson>3.18.0</redisson>
     </properties>
 
     <dependencyManagement>

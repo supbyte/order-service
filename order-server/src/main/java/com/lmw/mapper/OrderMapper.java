@@ -1,6 +1,7 @@
 package com.lmw.mapper;
 
 import com.lmw.entity.Order;
+import com.lmw.vo.OrderVO;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -20,4 +21,6 @@ public interface OrderMapper {
 
     //@Select("SELECT * FROM orders WHERE user_id = #{userId}")
     List<Order> getOrdersByUserId(Integer userId);
+
+    List<OrderVO> listOrderVOByUserId(int userId);
 }

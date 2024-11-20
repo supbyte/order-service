@@ -3,8 +3,6 @@ package com.lmw.mapper;
 import com.lmw.entity.Payment;
 import org.apache.ibatis.annotations.*;
 
-import java.util.List;
-
 @Mapper
 public interface PaymentMapper {
 
@@ -16,5 +14,5 @@ public interface PaymentMapper {
     int createPayment(Payment payment);
 
     //@Select("SELECT * FROM payments WHERE order_id = #{orderId}")
-    List<Payment> getPaymentsByOrderId(Integer orderId);
+    Payment getPaymentByOrderId(Integer orderId);
 }

@@ -14,12 +14,18 @@
         SELECT * FROM order_items WHERE item_id = #{itemId}
     </select>
 
-    <insert id="createOrderItem">
+    <insert id="createOrderItem" useGeneratedKeys="true" keyProperty="itemId">
         INSERT INTO order_items (order_id, product_id, quantity, price)
         VALUES (#{orderId}, #{productId}, #{quantity}, #{price})
     </insert>
 
     <select id="getOrderItemsByOrderId" resultMap="OrderItemResultMap">
         SELECT * FROM order_items WHERE order_id = #{orderId}
+    </select>
+
+    <select id="listOrderItemVOByOrderId" resultType="com.lmw.vo.OrderItemVO">
+        SELECT products.name as productName, order_items.quantity as quantity, products.price as price
+        FROM order_items INNER JOIN products ON order_items.product_id = products.product_id
+        WHERE order_items.order_id = #{orderId}
     </select>
 </mapper>

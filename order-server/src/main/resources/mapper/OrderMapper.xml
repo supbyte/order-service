@@ -25,4 +25,10 @@
     <select id="getOrdersByUserId" resultMap="OrderResultMap">
         SELECT * FROM orders WHERE user_id = #{userId}
     </select>
+    <select id="listOrderVOByUserId" resultType="com.lmw.vo.OrderVO">
+        SELECT orders.order_id as orderId, orders.total_price as totalPrice, orders.status as status
+        FROM orders
+        WHERE user_id = #{userId}
+        ORDER BY created_at DESC
+    </select>
 </mapper>
