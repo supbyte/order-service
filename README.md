@@ -71,4 +71,16 @@ CREATE TABLE payments (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 ```
+### 整合Knife4j接口文档
+启动项目后访问 http://localhost:8080/doc.html 即可查看接口文档并调试
+
+### 项目环境
+1. Idea 2024.3
+2. MySQL 5.7
+3. 浏览器 chrome
+4. Maven 3.6.3
+5. JDK 1.8
+6. Redis 5.0.14
+7. SpringBoot 2.7.3
+
 
