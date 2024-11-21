@@ -53,7 +53,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     @Transactional
     public Order createOrder(int userId, List<OrderItemDTO> items) throws InsufficientStockException, ResourceNotFoundException {
-        String lockKey = "order_lock_" + userId;
+        String lockKey = "order_lock_" + userId;    // 只能防止重复下单
         RLock lock = redissonClient.getLock(lockKey);
 
         try {
@@ -112,7 +112,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     @Transactional(noRollbackFor = PaymentFailureException.class)
     public void payOrder(int orderId, PaymentDTO paymentDTO) throws InsufficientStockException, ResourceNotFoundException {
-        String lockKey = "order_lock_" + orderId;
+        String lockKey = "order_lock_" + orderId;   // 只能防止重复支付
         RLock lock = redissonClient.getLock(lockKey);
 
         try {
